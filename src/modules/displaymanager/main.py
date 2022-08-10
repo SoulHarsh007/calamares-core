@@ -662,27 +662,39 @@ class DMlightdm(DisplayManager):
         lightdm_conf_path = os.path.join(self.root_mount_point, "etc/lightdm/lightdm.conf")
         greeter_name = self.find_preferred_greeter()
 
-        if greeter_name is not None:
-            greeter = os.path.basename(greeter_name)  # Follow symlinks, hope they are not absolute
-            if greeter.endswith('.desktop'):
-                greeter = greeter[:-8]  # Remove ".desktop" from end
-
-            libcalamares.utils.debug("found greeter {!s}".format(greeter))
-            os.system(
-                "sed -i -e \"s/^.*greeter-session=.*"
-                "/greeter-session={!s}/\" {!s}".format(
-                    greeter,
-                    lightdm_conf_path
-                )
+        # configure lightdm-greeter
+        greeter_path = os.path.join(
+            self.root_mount_point, "usr/share/xgreeters/lightdm-greeter.desktop"
+            # lightdm-greeter.desktop is typically a symlink managed
+            # by update-alternatives pointing to
+            # /etc/alternatives/lightdm-greeter which is also a
+            # symlink to a real .desktop file back in
+            # /usr/share/xgreeters/
             )
-            libcalamares.utils.debug("{!s} configured as greeter.".format(greeter))
+
+        if (os.path.exists(greeter_path)):
+            # find the default lightdm-greeter
+            entry = os.path.basename(os.path.realpath(greeter_path))
+            if entry.endswith('.desktop'):
+                greeter = entry.split('.')[0]
+                libcalamares.utils.debug(
+                    "found greeter {!s}".format(greeter)
+                )
+                os.system(
+                    "sed -i -e \"s/^.*greeter-session=.*"
+                    "/greeter-session={!s}/\" {!s}".format(
+                        greeter,
+                        lightdm_conf_path
+                    )
+                )
+                libcalamares.utils.debug(
+                    "{!s} configured as greeter.".format(greeter)
+                )
         else:
-            libcalamares.utils.error("No greeter found at all, preferred {!s}".format(self.preferred_greeters))
             return (
                 _("Cannot configure LightDM"),
                 _("No LightDM greeter installed.")
             )
-
 
 class DMslim(DisplayManager):
     name = "slim"
