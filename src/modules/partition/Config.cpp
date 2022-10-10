@@ -66,7 +66,6 @@ Config::luksGenerationNames()
     // clang-format off
     static const NamedEnumTable< LuksGeneration > names {
         { QStringLiteral( "luks1" ), LuksGeneration::Luks1 },
-        { QStringLiteral( "luks" ), LuksGeneration::Luks1 },
         { QStringLiteral( "luks2" ), LuksGeneration::Luks2 },
     };
     // clang-format on
