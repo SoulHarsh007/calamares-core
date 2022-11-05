@@ -159,9 +159,6 @@ public:
      */
     LuksGeneration luksFileSystemType() const { return m_luksFileSystemType; }
 
-    /// @brief If zfs encryption should be allowed
-    bool allowZfsEncryption() const { return m_allowZfsEncryption; }
-
 public Q_SLOTS:
     void setInstallChoice( int );  ///< Translates a button ID or so to InstallChoice
     void setInstallChoice( InstallChoice );

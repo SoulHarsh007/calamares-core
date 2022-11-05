@@ -775,7 +775,7 @@ ChoicePage::doAlongsideApply()
             m_core->layoutApply( dev,
                                  newLastSector + 2,
                                  oldLastSector,
-                                 m_config->luksFileSystemType(),
+                                 Config::luksGenerationNames().find(m_config->luksFileSystemType()),
                                  m_encryptWidget->passphrase(),
                                  candidate->parent(),
                                  candidate->roles() );
@@ -850,7 +850,7 @@ ChoicePage::doReplaceSelectedPartition( const QModelIndex& current )
                     m_core->layoutApply( selectedDevice(),
                                          selectedPartition->firstSector(),
                                          selectedPartition->lastSector(),
-                                         m_config->luksFileSystemType(),
+                                         Config::luksGenerationNames().find(m_config->luksFileSystemType()),
                                          m_encryptWidget->passphrase(),
                                          newParent,
                                          newRoles );
