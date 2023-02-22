@@ -19,7 +19,7 @@
 #include "utils/Retranslator.h"
 #include <kpmcore/fs/filesystem.h>
 
-constexpr uint ZFS_MIN_LENGTH = 8;
+constexpr int ZFS_MIN_LENGTH = 8;
 
 constexpr int ZFS_MIN_LENGTH = 8;
 
@@ -221,5 +221,8 @@ void
 EncryptWidget::setFilesystem( const QString& fs )
 {
     m_filesystem = fs;
-    updateState();
+    if ( m_state != Encryption::Disabled )
+    {
+        updateState( false );
+    }
 }
