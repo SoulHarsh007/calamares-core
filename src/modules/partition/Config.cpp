@@ -373,7 +373,7 @@ Config::fillConfigurationFSTypes( const QVariantMap& configurationMap )
         luksGeneration = Config::LuksGeneration::Luks1;
     }
     m_luksFileSystemType = luksGeneration;
-    gs->insert( "luksFileSystemType", luksGenerationNames().find(luksGeneration) );
+    gs->insert( "luksFileSystemType", luksGenerationNames().find( luksGeneration ) );
 
     Q_ASSERT( !m_eraseFsTypes.isEmpty() );
     Q_ASSERT( m_eraseFsTypes.contains( fsRealName ) );
