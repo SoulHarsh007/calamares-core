@@ -314,7 +314,6 @@ def enable_swap_partition(swap_device):
     except subprocess.CalledProcessError:
         raise Exception(_("Failed to swapon " + swap_device))
 
-
 def run():
     """
     Mount all the partitions from GlobalStorage and from the job configuration.
