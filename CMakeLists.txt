@@ -136,7 +136,7 @@ set( CALAMARES_DESCRIPTION_SUMMARY
 #
 # Language en (source language) is added later. It isn't listed in
 # Transifex either. Get the list of languages and their status
-# from https://transifex.com/calamares/calamares/ , or (preferably)
+# from https://app.transifex.com/calamares/calamares/ , or (preferably)
 # use ci/txstats.py to automatically check.
 #
 # When adding a new language, take care that it is properly loaded
