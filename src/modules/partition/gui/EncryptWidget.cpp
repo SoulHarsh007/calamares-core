@@ -20,8 +20,6 @@
 
 constexpr int ZFS_MIN_LENGTH = 8;
 
-constexpr int ZFS_MIN_LENGTH = 8;
-
 /** @brief Does this system support whole-disk encryption?
  *
  * Returns @c true if the system is likely to support encryption
