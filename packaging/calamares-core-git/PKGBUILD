@@ -8,14 +8,13 @@ arch=('x86_64' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install calamares-configuration.'
 url='https://github.com/RebornOS-Developers/calamares-core'
 license=('GPL3')
-_boostver=$(pacman -Q boost | cut -d ' ' -f 2 | cut -d '-' -f 1)
 depends=('qt5-location' 'qt5-svg' 'qt5-tools' 'qt5-webengine' 'qt5-xmlpatterns'         
          'qt5ct' 'qqc2-desktop-style' 'polkit-qt5' 'kconfig' 'kcoreaddons'
          'kdbusaddons' 'ki18n' 'kpackage' 'kparts' 'kpmcore'       
          'appstream-qt' 'libatasmart' 'libpwquality' 'plasma-framework'  
          'parted' 'solid' 'udisks2' 'yaml-cpp' 'polkit' 'ckbcomp'
          'adobe-source-han-sans-otc-fonts' 'python'
-         'adobe-source-han-serif-otc-fonts' "boost=${_boostver}")
+         'adobe-source-han-serif-otc-fonts' 'boost')
 optdepends=()
 provides=('calamares')
 conflicts=('calamares' 'calamares-core' 'calamares-core-git' 'calamares-core-local')
