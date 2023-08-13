@@ -9,10 +9,10 @@ INITIAL_BRANCH="$(git branch --show-current)"
             || true
         } \
         && git fetch --all \
-        && git checkout -B _calamares --track upstream \
-        && git reset --hard upstream
+        && git checkout -B _calamares --track upstream/calamares \
+        && git reset --hard upstream/calamares
 )
 
-git checkout -f "$INITIAL_BRANCH"
+git checkout "$INITIAL_BRANCH"
 
 set +o xtrace
