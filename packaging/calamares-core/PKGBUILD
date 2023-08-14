@@ -1,7 +1,7 @@
 # Maintainer: shivanandvp <shivanandvp@rebornos.org>
 
 pkgname=calamares-core
-pkgver=3.3.0_alpha3_6
+pkgver=3.3.0_alpha3_7
 pkgrel=1
 
 arch=('x86_64' 'aarch64')
@@ -18,7 +18,6 @@ depends=('qt5-location' 'qt5-svg' 'qt5-tools' 'qt5-webengine' 'qt5-xmlpatterns'
 optdepends=()
 provides=('calamares')
 conflicts=('calamares' 'calamares-core' 'calamares-core-git' 'calamares-core-local')
-md5sums=('SKIP')
 makedepends=('extra-cmake-modules'
              'git'
              'qt5-tools'
@@ -27,7 +26,8 @@ makedepends=('extra-cmake-modules'
              'python-pyaml'
              'yaml-cpp')
 
-source=("https://github.com/RebornOS-Developers/calamares-core/archive/refs/tags/v${pkgver}.tar.gz")             
+source=("https://github.com/RebornOS-Developers/calamares-core/archive/refs/tags/v${pkgver}.tar.gz")
+sha256sums=('SKIP')
 
 build() {     
     PROJECT_DIRECTORY="${srcdir}/calamares-core-${pkgver}"
