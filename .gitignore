@@ -47,6 +47,7 @@ CMakeLists.txt.user
 
 # Visual Studio Code
 .vscode
+*.code-workspace
 
 # Backup files
 *~

@@ -6,7 +6,7 @@ pkgrel=1
 
 arch=('x86_64' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install calamares-configuration.'
-url='https://github.com/RebornOS-Developers/calamares-core'
+url='https://github.com/RebornOS-Team/calamares-core'
 license=('GPL3')
 depends=('qt5-location' 'qt5-svg' 'qt5-tools' 'qt5-webengine' 'qt5-xmlpatterns'         
          'qt5ct' 'qqc2-desktop-style' 'polkit-qt5' 'kconfig' 'kcoreaddons'

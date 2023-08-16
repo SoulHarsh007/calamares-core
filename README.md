@@ -5,13 +5,13 @@
 
 [![Discord Server](https://dcbadge.vercel.app/api/server/cU5s6MPpQH?style=flat)](https://discord.gg/cU5s6MPpQH)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/rebornos-developers/calamares-core)
-[![Release](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/release.yml/badge.svg)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/release.yml)
-[![Pre-Release (Git)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/pre_release.yml/badge.svg)](https://github.com/RebornOS-Developers/calamares-core/actions/workflows/pre_release.yml)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/rebornos-team/calamares-core)
+[![Release](https://github.com/RebornOS-Team/calamares-core/actions/workflows/release.yml/badge.svg)](https://github.com/RebornOS-Team/calamares-core/actions/workflows/release.yml)
+[![Pre-Release (Git)](https://github.com/RebornOS-Team/calamares-core/actions/workflows/pre_release.yml/badge.svg)](https://github.com/RebornOS-Team/calamares-core/actions/workflows/pre_release.yml)
 
-> **Note**: This project should not carry any RebornOS-specific configuration except for the installer packaging files (PKGBUILD, build scripts), icons, and launch scripts. Use the [calamares-configuration](https://github.com/RebornOS-Developers/calamares-configuration) project for other RebornOS-specific configuration.
+> **Note**: This project should not carry any RebornOS-specific configuration except for the installer packaging files (PKGBUILD, build scripts), icons, and launch scripts. Use the [calamares-configuration](https://github.com/RebornOS-Team/calamares-configuration) project for other RebornOS-specific configuration.
 
-This is a fork of the [Calamares project](https://github.com/calamares/calamares). It is highly recommended to [keep this project updated](https://github.com/RebornOS-Developers/calamares-core#updating).
+This is a fork of the [Calamares project](https://github.com/calamares/calamares). It is highly recommended to [keep this project updated](https://github.com/RebornOS-Team/calamares-core#updating).
 
 ## Cloning
 
@@ -20,7 +20,7 @@ In order to download the source code to your local computer for testing, or for 
 ### HTTPS
 
 ```bash
-git clone https://github.com/RebornOS-Developers/calamares-core.git 
+git clone https://github.com/RebornOS-Team/calamares-core.git 
 ```
 
 OR
@@ -28,7 +28,7 @@ OR
 ### SSH
 
 ```bash
-git clone git@github.com:RebornOS-Developers/calamares-core.git
+git clone git@github.com:RebornOS-Team/calamares-core.git
 ```
 
 ## Local development
@@ -66,7 +66,7 @@ Change to the project directory (`cd calamares-core`) and run any of the below s
 - where `<MODE>` can be one of the below
      1. `local`: Selects *calamares-core-local* from the local project that you have cloned already.
      2. `git`: Selects *calamares-core-git* from the latest git commit.
-     3. `stable`: Selects *calamares-core* from the git tag corresponding to the [`pkgver` specified in the PKGBUILD](https://github.com/RebornOS-Developers/calamares-core/blob/main/packaging/calamares-core/PKGBUILD#L4). If `pkgver=3.3.0_alpha2_2`, then the git tag `v3.3.0_alpha2_2` is used for packaging. 
+     3. `stable`: Selects *calamares-core* from the git tag corresponding to the [`pkgver` specified in the PKGBUILD](https://github.com/RebornOS-Team/calamares-core/blob/main/packaging/calamares-core/PKGBUILD#L4). If `pkgver=3.3.0_alpha2_2`, then the git tag `v3.3.0_alpha2_2` is used for packaging. 
      
 > **Note**: Any additional parameters passed to the above scripts are automatically sent to `makepkg` or `pacman` (whichever is applicable).
 
