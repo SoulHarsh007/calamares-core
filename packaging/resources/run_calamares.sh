@@ -29,7 +29,7 @@ LAUNCH_INSTALLER_COMMAND="env \
     KDE_FULL_SESSION=true \
     QT_QUICK_CONTROLS_STYLE="Fusion" \
     QT_QPA_PLATFORMTHEME="qt5ct" \
-    dbus-launch calamares "$@""
+    calamares "$@""
 
 {
     pkexec \
