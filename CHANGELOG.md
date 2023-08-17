@@ -1,6 +1,22 @@
 # CHANGELOG
 
-Calamares Core `v3.3.0_alpha2_1` -> `v3.3.0_alpha3_5` ChangeLog
+## Calamares Core `v3.3.0_alpha3_7`
+
+### For Users
+
+- Installer text colours, and image colours all modified to suit the dark mode.
+- New features and bug fixes from upstream incorporated.
+
+### For Developers
+
+- Launch script modified to send more environment information, and to remove `dbus-launch`.
+- Enabled launching processes from the `welcomeq` module.
+- Renamed the RebornOS GitHub organization from `RebornOS-Developers` to `RebornOS-Team`.
+- New features and bug fixes from upstream incorporated.
+- Updated and faster script to pull upstream changes into a separate `_calamares` branch.
+- The `README.md` documentation is updated.
+
+## Calamares Core `v3.3.0_alpha2_1` -> `v3.3.0_alpha3_5` ChangeLog
 
 ### For Users
 

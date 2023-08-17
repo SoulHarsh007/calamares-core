@@ -74,7 +74,7 @@ Change to the project directory (`cd calamares-core`) and run any of the below s
 
 To keep this project in sync with the upstream Calamares source, please follow the below steps. Change to the project directory (`cd calamares-core`) before continuing...
 
-1. **Fetch changes from the upstream Github source**: The below script clones the [upstream Calamares source](https://github.com/calamares/calamares) to the `calamares` branch (force overwrites it).
+1. **Fetch changes from the upstream Github source**: The below script clones the [upstream Calamares source](https://github.com/calamares/calamares) to the `_calamares` branch (force overwrites it).
 ```sh
 sh scripts/update-calamares-branch.sh
 ```
