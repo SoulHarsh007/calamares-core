@@ -2,7 +2,7 @@
  *   SPDX-FileCopyrightText: 2016 Luca Giambonini <almack@chakraos.org>
  *   SPDX-FileCopyrightText: 2016 Lisa Vitolo     <shainer@chakraos.org>
  *   SPDX-FileCopyrightText: 2017 Adriaan de Groot <groot@kde.org>
- *   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
+ *   SPDX-FileCopyrightText: 2021 shiva.patt <shivanandvp@rebornos.org>
  *   SPDX-License-Identifier: GPL-3.0-or-later
  *
  *   Calamares is Free Software: see the License-Identifier above.

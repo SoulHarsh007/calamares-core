@@ -1,7 +1,7 @@
 # === This file is part of Calamares - <https://calamares.io> ===
 #
 #   SPDX-FileCopyrightText: 2020 Adriaan de Groot <groot@kde.org>
-#   SPDX-FileCopyrightText: 2021 shivanandvp <shivanandvp@rebornos.org>
+#   SPDX-FileCopyrightText: 2021 shiva.patt <shivanandvp@rebornos.org>
 #   SPDX-License-Identifier: BSD-2-Clause
 #
 if( NOT WITH_QML )
