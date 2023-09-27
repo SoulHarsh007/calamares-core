@@ -2,7 +2,7 @@
 
 pkgname=calamares-core
 pkgver=3.3.0_alpha3_9
-pkgrel=1
+pkgrel=2
 
 arch=('x86_64' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install calamares-configuration.'
@@ -13,7 +13,7 @@ depends=('qt5-location' 'qt5-svg' 'qt5-tools' 'qt5-webengine' 'qt5-xmlpatterns'
          'kdbusaddons' 'ki18n' 'kpackage' 'kparts' 'kpmcore'       
          'appstream-qt' 'libatasmart' 'libpwquality' 'plasma-framework'  
          'parted' 'solid' 'udisks2' 'yaml-cpp' 'polkit' 'ckbcomp'
-         'adobe-source-han-sans-otc-fonts' 'python'
+         'adobe-source-han-sans-otc-fonts' 'python' 
          'adobe-source-han-serif-otc-fonts' 'boost' 'mkinitcpio-openswap')
 optdepends=()
 provides=('calamares')

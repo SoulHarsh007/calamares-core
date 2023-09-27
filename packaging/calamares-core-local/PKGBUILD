@@ -2,7 +2,7 @@
 
 pkgname=calamares-core-local
 pkgver=3.3.0_alpha3_9
-pkgrel=1
+pkgrel=2
 
 arch=('x86_64' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install calamares-configuration.'
