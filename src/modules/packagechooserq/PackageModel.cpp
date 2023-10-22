@@ -13,14 +13,14 @@
 #include "utils/Logger.h"
 #include "utils/Variant.h"
 
-/** @brief A wrapper for CalamaresUtils::getSubMap that excludes the success param
+/** @brief A wrapper for Calamares::getSubMap that excludes the success param
  */
 static QVariantMap
 getSubMap( const QVariantMap& map, const QString& key )
 {
     bool success;
 
-    return CalamaresUtils::getSubMap( map, key, success );
+    return Calamares::getSubMap( map, key, success );
 }
 
 PackageItem::PackageItem() { }
@@ -50,13 +50,13 @@ PackageItem::PackageItem( const QString& a_id,
 }
 
 PackageItem::PackageItem::PackageItem( const QVariantMap& item_map )
-    : id( CalamaresUtils::getString( item_map, "id" ) )
-    , name( CalamaresUtils::Locale::TranslatedString( item_map, "name" ) )
-    , description( CalamaresUtils::Locale::TranslatedString( item_map, "description" ) )
-    , screenshot( CalamaresUtils::getString( item_map, "screenshot" ) )
-    , packageNames( CalamaresUtils::getStringList( item_map, "packages" ) )
-    , selected( CalamaresUtils::getBool( item_map, "selected" ) )
-    , whenKeyValuePairs( CalamaresUtils::getStringList( item_map, "whenkeyvaluepairs" ) )
+    : id( Calamares::getString( item_map, "id" ) )
+    , name( Calamares::Locale::TranslatedString( item_map, "name" ) )
+    , description( Calamares::Locale::TranslatedString( item_map, "description" ) )
+    , screenshot( Calamares::getString( item_map, "screenshot" ) )
+    , packageNames( Calamares::getStringList( item_map, "packages" ) )
+    , selected( Calamares::getBool( item_map, "selected" ) )
+    , whenKeyValuePairs( Calamares::getStringList( item_map, "whenkeyvaluepairs" ) )
     , netinstallData( getSubMap( item_map, "netinstall" ) )
 {
     if ( name.isEmpty() && id.isEmpty() )

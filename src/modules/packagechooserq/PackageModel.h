@@ -22,8 +22,8 @@
 struct PackageItem
 {
     QString id;
-    CalamaresUtils::Locale::TranslatedString name;
-    CalamaresUtils::Locale::TranslatedString description;
+    Calamares::Locale::TranslatedString name;
+    Calamares::Locale::TranslatedString description;
     QString screenshot;
     QStringList packageNames;
     bool selected;

@@ -122,9 +122,9 @@ Config::introductionPackage() const
             = QT_TR_NOOP( "Please pick a product from the list. The selected product will be installed." );
         defaultIntroduction = new PackageItem( QString(), name, description, false );
         defaultIntroduction->screenshot = QStringLiteral( ":/images/no-selection.png" );
-        defaultIntroduction->name = CalamaresUtils::Locale::TranslatedString( name, metaObject()->className() );
+        defaultIntroduction->name = Calamares::Locale::TranslatedString( name, metaObject()->className() );
         defaultIntroduction->description
-            = CalamaresUtils::Locale::TranslatedString( description, metaObject()->className() );
+            = Calamares::Locale::TranslatedString( description, metaObject()->className() );
     }
     return *defaultIntroduction;
 }
@@ -142,7 +142,7 @@ Config::pageLeavingTasks()
     else if ( m_method == PackageChooserMethod::Packages )
     {
         QStringList packageNames = m_model->getInstallPackagesForNames( m_selections );
-        CalamaresUtils::Packages::setGSPackageAdditions(
+        Calamares::Packages::setGSPackageAdditions(
             Calamares::JobQueue::instance()->globalStorage(), m_defaultId, packageNames );
         cDebug() << m_defaultId << "Finalized these selections: " << m_selections;
         cDebug() << m_defaultId << "Finalized these packages: " << packageNames;
@@ -270,16 +270,16 @@ fillModel( PackageListModel* model, const QVariantList& items )
 void
 Config::setConfigurationMap( const QVariantMap& configurationMap )
 {
-    m_mode = packageChooserModeNames().find( CalamaresUtils::getString( configurationMap, "mode" ),
+    m_mode = packageChooserModeNames().find( Calamares::getString( configurationMap, "mode" ),
                                              PackageChooserMode::Required );
-    m_method = PackageChooserMethodNames().find( CalamaresUtils::getString( configurationMap, "method" ),
+    m_method = PackageChooserMethodNames().find( Calamares::getString( configurationMap, "method" ),
                                                  PackageChooserMethod::Packages );
-    m_outputConditionKey = CalamaresUtils::getString( configurationMap, "outputconditionkey" );
-    m_promptMessage = CalamaresUtils::getString( configurationMap, "promptmessage" );
+    m_outputConditionKey = Calamares::getString( configurationMap, "outputconditionkey" );
+    m_promptMessage = Calamares::getString( configurationMap, "promptmessage" );
 
     if ( m_method == PackageChooserMethod::Legacy )
     {
-        const QString configId = CalamaresUtils::getString( configurationMap, "id" );
+        const QString configId = Calamares::getString( configurationMap, "id" );
         const QString base = QStringLiteral( "packagechooser_" );
         if ( configId.isEmpty() )
         {
@@ -306,7 +306,7 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
         fillModel( m_model, configurationMap.value( "items" ).toList() );
     }
 
-    QString default_item_id = CalamaresUtils::getString( configurationMap, "default" );
+    QString default_item_id = Calamares::getString( configurationMap, "default" );
     if ( !default_item_id.isEmpty() )
     {
         for ( int item_n = 0; item_n < m_model->packageCount(); ++item_n )
@@ -323,12 +323,12 @@ Config::setConfigurationMap( const QVariantMap& configurationMap )
     }
 
     bool labels_ok = false;
-    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    auto labels = Calamares::getSubMap( configurationMap, "labels", labels_ok );
     if ( labels_ok )
     {
         if ( labels.contains( "step" ) )
         {
-            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+            m_stepName = new Calamares::Locale::TranslatedString( labels, "step" );
         }
     }
 

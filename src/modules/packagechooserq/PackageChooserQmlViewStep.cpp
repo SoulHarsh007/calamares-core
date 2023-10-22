@@ -95,12 +95,12 @@ PackageChooserQmlViewStep::setConfigurationMap( const QVariantMap& configuration
     m_config->setConfigurationMap( configurationMap );
 
     bool labels_ok = false;
-    auto labels = CalamaresUtils::getSubMap( configurationMap, "labels", labels_ok );
+    auto labels = Calamares::getSubMap( configurationMap, "labels", labels_ok );
     if ( labels_ok )
     {
         if ( labels.contains( "step" ) )
         {
-            m_stepName = new CalamaresUtils::Locale::TranslatedString( labels, "step" );
+            m_stepName = new Calamares::Locale::TranslatedString( labels, "step" );
         }
     }
 

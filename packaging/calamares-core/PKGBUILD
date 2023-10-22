@@ -27,7 +27,7 @@ depends=(
     'appstream-qt'
     'libatasmart'
     'libpwquality'
-    'plasma-framework'
+    'plasma-framework5'
     'parted'
     'solid5'
     'udisks2'

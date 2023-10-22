@@ -147,7 +147,7 @@ private:
     QString m_outputConditionKey;
     QString m_promptMessage;
     bool m_configurationMapSet = false;
-    CalamaresUtils::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
+    Calamares::Locale::TranslatedString* m_stepName;  // As it appears in the sidebar
 };
 
 #endif

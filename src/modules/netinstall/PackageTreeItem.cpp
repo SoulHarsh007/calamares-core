@@ -78,11 +78,11 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, GroupTag&& paren
     , m_source( Calamares::getString( groupData, "source" ) )
     , m_isGroup( true )
     , m_isCritical( parentCriticality( groupData, parent.parent ) )
-    , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
-    , m_showReadOnly( CalamaresUtils::getBool( groupData, "immutable", false ) )
-    , m_showNoncheckable( CalamaresUtils::getBool( groupData, "noncheckable", false ) )
-    , m_startExpanded( CalamaresUtils::getBool( groupData, "expanded", false ) )
-    , m_ignoreShareState( CalamaresUtils::getBool( groupData, "ignore-share-state", false ) )
+    , m_isHidden( Calamares::getBool( groupData, "hidden", false ) )
+    , m_showReadOnly( Calamares::getBool( groupData, "immutable", false ) )
+    , m_showNoncheckable( Calamares::getBool( groupData, "noncheckable", false ) )
+    , m_startExpanded( Calamares::getBool( groupData, "expanded", false ) )
+    , m_ignoreShareState( Calamares::getBool( groupData, "ignore-share-state", false ) )
 { 
 }
 
