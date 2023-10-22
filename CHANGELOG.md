@@ -1,5 +1,16 @@
 # CHANGELOG
 
+## Calamares Core `v3.3.0_alpha3_10`
+
+### For Users
+
+- New features and bug fixes from upstream incorporated.
+- Better pacman progress reporting
+
+### For Developers
+
+- CONTRIBUTING.md has a release checklist.
+
 ## Calamares Core `v3.3.0_alpha3_8`
 
 ### For Users
