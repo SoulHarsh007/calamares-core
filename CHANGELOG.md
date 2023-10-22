@@ -1,6 +1,14 @@
 # CHANGELOG
 
-## Calamares Core `v3.3.0_alpha3_10`
+## Calamares Core `v3.3.0_alpha5_001`
+
+### For Users
+
+- Fix hanging while mounting happens in the installer
+
+### For Developers
+
+## Calamares Core `v3.3.0_alpha3_010`
 
 ### For Users
 
