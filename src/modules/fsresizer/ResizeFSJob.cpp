@@ -27,7 +27,7 @@
 #include <kpmcore/ops/resizeoperation.h>
 #include <kpmcore/util/report.h>
 
-using CalamaresUtils::Partition::PartitionIterator;
+using Calamares::Partition::PartitionIterator;
 
 ResizeFSJob::ResizeFSJob( QObject* parent )
     : Calamares::CppJob( parent )
@@ -35,9 +35,7 @@ ResizeFSJob::ResizeFSJob( QObject* parent )
 {
 }
 
-
 ResizeFSJob::~ResizeFSJob() {}
-
 
 QString
 ResizeFSJob::prettyName() const
@@ -155,14 +153,15 @@ ResizeFSJob::findGrownEnd( ResizeFSJob::PartitionMatch m )
     return last_available;
 }
 
-
 Calamares::JobResult
 ResizeFSJob::exec()
 {
     if ( !isValid() )
+    {
         return Calamares::JobResult::error(
             tr( "Invalid configuration" ),
             tr( "The file-system resize job has an invalid configuration and will not run." ) );
+    }
 
     if ( !m_kpmcore )
     {
@@ -175,11 +174,13 @@ ResizeFSJob::exec()
     // Now get the partition and FS we want to work on
     PartitionMatch m = findPartition();
     if ( !m.first || !m.second )
+    {
         return Calamares::JobResult::error(
             tr( "Resize Failed" ),
             !m_fsname.isEmpty()
                 ? tr( "The filesystem %1 could not be found in this system, and cannot be resized." ).arg( m_fsname )
                 : tr( "The device %1 could not be found in this system, and cannot be resized." ).arg( m_devicename ) );
+    }
 
     m.second->fileSystem().init();  // Initialize support for specific FS
     if ( !ResizeOperation::canGrow( m.second ) )
@@ -196,18 +197,22 @@ ResizeFSJob::exec()
              << ')' << "to -" << new_end;
 
     if ( new_end < 0 )
+    {
         return Calamares::JobResult::error( tr( "Resize Failed" ),
                                             !m_fsname.isEmpty()
                                                 ? tr( "The filesystem %1 cannot be resized." ).arg( m_fsname )
                                                 : tr( "The device %1 cannot be resized." ).arg( m_devicename ) );
+    }
     if ( new_end == 0 )
     {
         cWarning() << "Resize operation on" << m_fsname << m_devicename << "skipped as not-useful.";
         if ( m_required )
+        {
             return Calamares::JobResult::error(
                 tr( "Resize Failed" ),
                 !m_fsname.isEmpty() ? tr( "The filesystem %1 must be resized, but cannot." ).arg( m_fsname )
                                     : tr( "The device %1 must be resized, but cannot" ).arg( m_fsname ) );
+        }
 
         return Calamares::JobResult::ok();
     }
@@ -230,7 +235,6 @@ ResizeFSJob::exec()
     return Calamares::JobResult::ok();
 }
 
-
 void
 ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
 {
@@ -246,7 +250,7 @@ ResizeFSJob::setConfigurationMap( const QVariantMap& configurationMap )
     m_size = PartitionSize( configurationMap[ "size" ].toString() );
     m_atleast = PartitionSize( configurationMap[ "atleast" ].toString() );
 
-    m_required = CalamaresUtils::getBool( configurationMap, "required", false );
+    m_required = Calamares::getBool( configurationMap, "required", false );
 }
 
 CALAMARES_PLUGIN_FACTORY_DEFINITION( ResizeFSJobFactory, registerPlugin< ResizeFSJob >(); )

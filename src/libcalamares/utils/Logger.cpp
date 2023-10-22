@@ -14,6 +14,8 @@
 #include "Logger.h"
 
 #include "CalamaresVersionX.h"
+#include "compat/Mutex.h"
+#include "compat/Variant.h"
 #include "utils/Dirs.h"
 
 #include <QCoreApplication>
@@ -41,7 +43,6 @@ static QMutex s_mutex;
 
 static const char s_Continuation[] = "\n    ";
 static const char s_SubEntry[] = "    .. ";
-
 
 namespace Logger
 {
@@ -84,7 +85,7 @@ log_enabled( unsigned int level )
 static void
 log_implementation( const char* msg, unsigned int debugLevel, const bool withTime )
 {
-    QMutexLocker lock( &s_mutex );
+    Calamares::MutexLocker lock( &s_mutex );
 
     const auto date = QDate::currentDate().toString( Qt::ISODate );
     const auto time = QTime::currentTime().toString();
@@ -106,7 +107,6 @@ log_implementation( const char* msg, unsigned int debugLevel, const bool withTim
         std::cout << msg << std::endl;
     }
 }
-
 
 static void
 CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& msg )
@@ -137,13 +137,11 @@ CalamaresLogHandler( QtMsgType type, const QMessageLogContext&, const QString& m
     log_implementation( msg.toUtf8().constData(), level, true );
 }
 
-
 QString
 logFile()
 {
-    return CalamaresUtils::appLogDir().filePath( "session.log" );
+    return Calamares::appLogDir().filePath( "session.log" );
 }
-
 
 void
 setupLogfile()
@@ -173,7 +171,7 @@ setupLogfile()
 
     // Lock while (re-)opening the logfile
     {
-        QMutexLocker lock( &s_mutex );
+        Calamares::MutexLocker lock( &s_mutex );
         logfile.open( logFile().toLocal8Bit(), std::ios::app );
         if ( logfile.tellp() )
         {
@@ -199,7 +197,6 @@ CDebug::CDebug( unsigned int debugLevel, const char* func )
         m_msg = QStringLiteral( "WARNING: " );
     }
 }
-
 
 CDebug::~CDebug()
 {
@@ -227,9 +224,9 @@ const constexpr Quote_t Quote {};
 QString
 toString( const QVariant& v )
 {
-    auto t = v.type();
+    auto t = Calamares::typeOf( v );
 
-    if ( t == QVariant::List )
+    if ( t == Calamares::ListVariantType )
     {
         QStringList s;
         auto l = v.toList();
@@ -252,6 +249,7 @@ operator<<( QDebug& s, const RedactedCommand& l )
     if ( l.list.contains( "usermod" ) )
     {
         for ( const auto& item : l.list )
+        {
             if ( item.startsWith( "$6$" ) )
             {
                 s << "<password>";
@@ -260,6 +258,7 @@ operator<<( QDebug& s, const RedactedCommand& l )
             {
                 s << item;
             }
+        }
     }
     else
     {

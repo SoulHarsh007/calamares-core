@@ -38,7 +38,7 @@ parentCriticality( const QVariantMap& groupData, PackageTreeItem* parent )
 {
     if ( groupData.contains( "critical" ) )
     {
-        return CalamaresUtils::getBool( groupData, "critical", false );
+        return Calamares::getBool( groupData, "critical", false );
     }
     return parent ? parent->isCritical() : false;
 }
@@ -57,9 +57,9 @@ PackageTreeItem::PackageTreeItem( const QString& packageName, PackageTreeItem* p
 
 PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTag&& parent )
     : m_parentItem( parent.parent )
-    , m_packageName( CalamaresUtils::getString( groupData, "name" ) )
+    , m_packageName( Calamares::getString( groupData, "name" ) )
     , m_selected( parentCheckState( parent.parent ) )
-    , m_description( CalamaresUtils::getString( groupData, "description" ) )
+    , m_description( Calamares::getString( groupData, "description" ) )
     , m_isGroup( false )
     , m_isCritical( parent.parent ? parent.parent->isCritical() : false )
     , m_showReadOnly( parent.parent ? parent.parent->isImmutable() : false )
@@ -70,12 +70,12 @@ PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, PackageTag&& par
 
 PackageTreeItem::PackageTreeItem( const QVariantMap& groupData, GroupTag&& parent )
     : m_parentItem( parent.parent )
-    , m_name( CalamaresUtils::getString( groupData, "name" ) )
+    , m_name( Calamares::getString( groupData, "name" ) )
     , m_selected( parentCheckState( parent.parent ) )
-    , m_description( CalamaresUtils::getString( groupData, "description" ) )
-    , m_preScript( CalamaresUtils::getString( groupData, "pre-install" ) )
-    , m_postScript( CalamaresUtils::getString( groupData, "post-install" ) )
-    , m_source( CalamaresUtils::getString( groupData, "source" ) )
+    , m_description( Calamares::getString( groupData, "description" ) )
+    , m_preScript( Calamares::getString( groupData, "pre-install" ) )
+    , m_postScript( Calamares::getString( groupData, "post-install" ) )
+    , m_source( Calamares::getString( groupData, "source" ) )
     , m_isGroup( true )
     , m_isCritical( parentCriticality( groupData, parent.parent ) )
     , m_isHidden( CalamaresUtils::getBool( groupData, "hidden", false ) )
@@ -155,7 +155,6 @@ PackageTreeItem::parentItem() const
     return m_parentItem;
 }
 
-
 bool
 PackageTreeItem::hiddenSelected() const
 {
@@ -182,7 +181,6 @@ PackageTreeItem::hiddenSelected() const
     /* Has no non-hidden parents */
     return m_selected != Qt::Unchecked;
 }
-
 
 void
 PackageTreeItem::setSelected( Qt::CheckState isSelected )
@@ -243,17 +241,18 @@ PackageTreeItem::updateSelected()
     }
 }
 
-
 void
 PackageTreeItem::setChildrenSelected( Qt::CheckState isSelected )
 {
     if ( isSelected != Qt::PartiallyChecked )
+    {
         // Children are never root; don't need to use setSelected on them.
         for ( auto child : m_childItems )
         {
             child->m_selected = isSelected;
             child->setChildrenSelected( isSelected );
         }
+    }
 }
 
 void

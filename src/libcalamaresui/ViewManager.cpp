@@ -93,20 +93,17 @@ ViewManager::ViewManager( QObject* parent )
 #endif
 }
 
-
 ViewManager::~ViewManager()
 {
     m_widget->deleteLater();
     s_instance = nullptr;
 }
 
-
 QWidget*
 ViewManager::centralWidget()
 {
     return m_widget;
 }
-
 
 void
 ViewManager::addViewStep( ViewStep* step )
@@ -119,7 +116,6 @@ ViewManager::addViewStep( ViewStep* step )
         emit nextEnabledChanged( m_nextEnabled );
     }
 }
-
 
 void
 ViewManager::insertViewStep( int before, ViewStep* step )
@@ -174,12 +170,11 @@ ViewManager::onInstallationFailed( const QString& message, const QString& detail
              {
                  if ( result == QDialog::Accepted && errorDialog->shouldOfferWebPaste() )
                  {
-                     CalamaresUtils::Paste::doLogUploadUI( errorDialog );
+                     Calamares::Paste::doLogUploadUI( errorDialog );
                  }
                  QApplication::quit();
              } );
 }
-
 
 void
 ViewManager::onInitFailed( const QStringList& modules )
@@ -237,20 +232,17 @@ ViewManager::updateNextStatus( bool status )
     }
 }
 
-
 ViewStepList
 ViewManager::viewSteps() const
 {
     return m_steps;
 }
 
-
 ViewStep*
 ViewManager::currentStep() const
 {
     return currentStepValid() ? m_steps.value( m_currentStep ) : nullptr;
 }
-
 
 int
 ViewManager::currentStepIndex() const
@@ -287,6 +279,37 @@ isAtVeryEnd( const ViewStepList& steps, int index )
     return ( index >= steps.count() ) || ( index == steps.count() - 1 && steps.last()->isAtEnd() );
 }
 
+static int
+questionBox( QWidget* parent,
+             const QString& title,
+             const QString& question,
+             const QString& button0,
+             const QString& button1 )
+{
+
+#if QT_VERSION >= QT_VERSION_CHECK( 6, 0, 0 )
+    QMessageBox mb( QMessageBox::Question, title, question, QMessageBox::StandardButton::NoButton, parent );
+    const auto* const okButton = mb.addButton( button0, QMessageBox::AcceptRole );
+    mb.addButton( button1, QMessageBox::RejectRole );
+    mb.exec();
+    if ( mb.clickedButton() == okButton )
+    {
+        return 0;
+    }
+    return 1;  // Cancel
+#else
+    return QMessageBox::question( parent,
+                                  title,
+                                  question,
+                                  button0,
+                                  button1,
+                                  QString(),
+                                  0 /* default first button, i.e. confirm */,
+                                  1 /* escape is second button, i.e. cancel */ );
+
+#endif
+}
+
 void
 ViewManager::next()
 {
@@ -318,15 +341,11 @@ ViewManager::next()
             QString confirm = settings->isSetupMode() ? tr( "&Set up now" ) : tr( "&Install now" );
 
             const auto* branding = Calamares::Branding::instance();
-            int reply
-                = QMessageBox::question( m_widget,
-                                         title,
-                                         question.arg( branding->shortProductName(), branding->shortVersionedName() ),
-                                         confirm,
-                                         tr( "Go &back" ),
-                                         QString(),
-                                         0 /* default first button, i.e. confirm */,
-                                         1 /* escape is second button, i.e. cancel */ );
+            int reply = questionBox( m_widget,
+                                     title,
+                                     question.arg( branding->shortProductName(), branding->shortVersionedName() ),
+                                     confirm,
+                                     tr( "Go &back" ) );
             if ( reply == 1 )
             {
                 return;
@@ -460,7 +479,6 @@ ViewManager::back()
     updateButtonLabels();
 }
 
-
 void
 ViewManager::quit()
 {
@@ -548,7 +566,7 @@ ViewManager::data( const QModelIndex& index, int role ) const
             // we must be in debug-mode (-d) so presumably it
             // is a distro-developer or Calamares-developer
             // running it, and we don't need translation for them.
-            QString toolTip( "<b>Debug information</b>" ); // Intentionally no translation here
+            QString toolTip( "<b>Debug information</b>" );  // Intentionally no translation here
             toolTip.append( "<br/>Type:\tViewStep" );
             toolTip.append( QString( "<br/>Pretty:\t%1" ).arg( step->prettyName() ) );
             toolTip.append( QString( "<br/>Status:\t%1" ).arg( step->prettyStatus() ) );
@@ -566,7 +584,6 @@ ViewManager::data( const QModelIndex& index, int role ) const
         return QVariant();
     }
 }
-
 
 int
 ViewManager::rowCount( const QModelIndex& parent ) const

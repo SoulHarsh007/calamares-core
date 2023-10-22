@@ -10,7 +10,7 @@ if(NOT WITH_QML)
     return()
 endif()
 
-find_package(Qt5 ${QT_VERSION} CONFIG REQUIRED Core)
+find_package(${qtname} ${QT_VERSION} CONFIG REQUIRED Core)
 
 # Add optional libraries here
 set(USER_EXTRA_LIB)
@@ -18,13 +18,12 @@ set(USER_EXTRA_LIB)
 ### OPTIONAL AppData XML support in PackageModel
 #
 #
-# TODO:3.3:WITH->BUILD (this doesn't affect the ABI offered by Calamares)
-option(WITH_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" ON)
-if(WITH_APPDATA)
-    find_package(Qt5 COMPONENTS Xml)
-    if(Qt5Xml_FOUND)
+option(BUILD_APPDATA "Support appdata: items in PackageChooser (requires QtXml)" ON)
+if(BUILD_APPDATA)
+    find_package(${qtname} COMPONENTS Xml)
+    if(TARGET ${qtname}::Xml)
         add_definitions(-DHAVE_APPDATA)
-        list(APPEND _extra_libraries Qt5::Xml)
+        list(APPEND _extra_libraries ${qtname}::Xml)
         list(APPEND _extra_src ${_packagechooser}/ItemAppData.cpp)
     endif()
 endif()
@@ -32,8 +31,8 @@ endif()
 ### OPTIONAL AppStream support in PackageModel
 #
 #
-option(WITH_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
-if(WITH_APPSTREAM)
+option(BUILD_APPSTREAM "Support appstream: items in PackageChooser (requires libappstream-qt)" ON)
+if(BUILD_APPSTREAM)
     find_package(AppStreamQt)
     set_package_properties(
         AppStreamQt
@@ -63,7 +62,7 @@ calamares_add_plugin(packagechooserq
         # ${_packagechooser}/PackageModel.cpp
         # ${_extra_src} # Causes the build to fail
     RESOURCES
-        packagechooserq.qrc
+        packagechooserq${QT_VERSION_SUFFIX}.qrc
     LINK_PRIVATE_LIBRARIES
         calamaresui
         ${_extra_libraries}
