@@ -1,30 +1,57 @@
 # Maintainer: shiva.patt <shivanandvp@rebornos.org>
 
 pkgname=calamares-core-git
-pkgver=3.3.0_alpha3_9
+pkgver=3.3.0_alpha3_10
 pkgrel=2
 
 arch=('x86_64' 'aarch64')
 pkgdesc='Calamares Installer for RebornOS. This is practically just bare Calamares. Please also install calamares-configuration.'
 url='https://github.com/RebornOS-Team/calamares-core'
 license=('GPL3')
-depends=('qt5-location' 'qt5-svg' 'qt5-tools' 'qt5-webengine' 'qt5-xmlpatterns'         
-         'qt5ct' 'qqc2-desktop-style' 'polkit-qt5' 'kconfig' 'kcoreaddons'
-         'kdbusaddons' 'ki18n' 'kpackage' 'kparts' 'kpmcore'       
-         'appstream-qt' 'libatasmart' 'libpwquality' 'plasma-framework'  
-         'parted' 'solid' 'udisks2' 'yaml-cpp' 'polkit' 'ckbcomp'
-         'adobe-source-han-sans-otc-fonts' 'python'
-         'adobe-source-han-serif-otc-fonts' 'boost' 'mkinitcpio-openswap')
+depends=(
+    'qt5-location'
+    'qt5-svg'
+    'qt5-tools'
+    'qt5-webengine'
+    'qt5-xmlpatterns'
+    'qt5ct'
+    'qqc2-desktop-style5'
+    'polkit-qt5'
+    'kconfig5'
+    'kcoreaddons5'
+    'kdbusaddons5'
+    'ki18n5'
+    'kpackage5'
+    'kparts5'
+    'kpmcore'
+    'appstream-qt'
+    'libatasmart'
+    'libpwquality'
+    'plasma-framework'
+    'parted'
+    'solid5'
+    'udisks2'
+    'yaml-cpp'
+    'polkit'
+    'ckbcomp'
+    'adobe-source-han-sans-otc-fonts'
+    'python'
+    'adobe-source-han-serif-otc-fonts'
+    'boost'
+    'mkinitcpio-openswap'
+)
 optdepends=()
 provides=('calamares')
 conflicts=('calamares' 'calamares-core' 'calamares-core-git' 'calamares-core-local')
-makedepends=('extra-cmake-modules'
-             'git'
-             'qt5-tools'
-             'python'
-             'python-yaml'
-             'python-pyaml'
-             'yaml-cpp')
+makedepends=(
+    'extra-cmake-modules'
+    'git'
+    'qt5-tools'
+    'python'
+    'python-yaml'
+    'python-pyaml'
+    'yaml-cpp'
+)
 
 source=("git+https://github.com/RebornOS-Team/calamares-core")  
 sha256sums=('SKIP')           
